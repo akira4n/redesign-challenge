@@ -6,122 +6,123 @@ interface BadgeProps {
   className?: string;
 }
 
+// Komponen Badge Pill kecil untuk dipajang di pojok kanan atas gambar kartu gim
 export const Badge: React.FC<BadgeProps> = ({ rating, size = 'md', className = '' }) => {
   const getStyles = () => {
-    switch (rating) {
+    const r = rating.replace('+', '');
+    switch (r) {
       case '3':
-      case '3+':
-        return {
-          bg: 'bg-emerald-50 border-emerald-200 text-emerald-700',
-          badgeText: '3+',
-          label: 'Semua Umur'
-        };
+        return 'bg-[#1b8a5a] text-white';
       case '7':
-      case '7+':
-        return {
-          bg: 'bg-sky-50 border-sky-200 text-sky-700',
-          badgeText: '7+',
-          label: 'Bimbingan Orang Tua (7+)'
-        };
+        return 'bg-[#6bb85c] text-white';
       case '13':
-      case '13+':
-        return {
-          bg: 'bg-amber-50 border-amber-200 text-amber-700',
-          badgeText: '13+',
-          label: 'Remaja (13+)'
-        };
+        return 'bg-[#2a8ebd] text-white';
       case '15':
-      case '15+':
-        return {
-          bg: 'bg-orange-50 border-orange-200 text-orange-700',
-          badgeText: '15+',
-          label: 'Remaja (15+)'
-        };
+        return 'bg-[#1d4f9f] text-white';
       case '18':
-      case '18+':
-        return {
-          bg: 'bg-rose-50 border-rose-200 text-rose-700',
-          badgeText: '18+',
-          label: 'Dewasa (18+)'
-        };
+        return 'bg-[#d92323] text-white';
       default:
-        return {
-          bg: 'bg-slate-50 border-slate-200 text-slate-700',
-          badgeText: rating,
-          label: rating
-        };
+        return 'bg-slate-600 text-white';
     }
   };
 
-  const { bg, badgeText } = getStyles();
-
   const sizeClasses = {
-    sm: 'px-2 py-0.5 text-[10px] font-bold border rounded-md',
-    md: 'px-3 py-1 text-xs font-bold border rounded-lg',
-    lg: 'px-4 py-1.5 text-sm font-extrabold border-2 rounded-xl'
+    sm: 'px-2 py-0.5 text-[9px] font-black rounded-md',
+    md: 'px-2.5 py-0.5 text-xs font-black rounded-md',
+    lg: 'px-3.5 py-1 text-sm font-black rounded-lg'
   };
 
+  const formattedRating = rating.endsWith('+') ? rating : `${rating}+`;
+
   return (
-    <span className={`inline-flex items-center justify-center font-sans tracking-wide uppercase ${sizeClasses[size]} ${bg} ${className}`}>
-      {badgeText}
+    <span className={`inline-flex items-center justify-center font-sans tracking-wide ${sizeClasses[size]} ${getStyles()} ${className}`}>
+      {formattedRating}
     </span>
   );
 };
 
-export const RatingBadgeLarge: React.FC<{ rating: '3' | '7' | '13' | '15' | '18' }> = ({ rating }) => {
-  const getLargeStyles = () => {
-    switch (rating) {
+interface IgrsOfficialBadgeProps {
+  rating: '3' | '7' | '13' | '15' | '18' | string;
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
+// Komponen resmi IGRS berbentuk vertikal (atas warna rating, bawah putih bertuliskan IGRS)
+export const IgrsOfficialBadge: React.FC<IgrsOfficialBadgeProps> = ({ rating, size = 'md', className = '' }) => {
+  const cleanRating = rating.replace('+', '');
+  
+  const getStyles = () => {
+    switch (cleanRating) {
       case '3':
         return {
-          bg: 'bg-emerald-600',
-          border: 'border-emerald-700',
-          shadow: 'shadow-emerald-200',
+          bgColor: 'bg-[#1b8a5a]',
           text: '3+'
         };
       case '7':
         return {
-          bg: 'bg-sky-600',
-          border: 'border-sky-700',
-          shadow: 'shadow-sky-200',
+          bgColor: 'bg-[#6bb85c]',
           text: '7+'
         };
       case '13':
         return {
-          bg: 'bg-amber-500',
-          border: 'border-amber-600',
-          shadow: 'shadow-amber-200',
+          bgColor: 'bg-[#2a8ebd]',
           text: '13+'
         };
       case '15':
         return {
-          bg: 'bg-orange-500',
-          border: 'border-orange-600',
-          shadow: 'shadow-orange-200',
+          bgColor: 'bg-[#1d4f9f]',
           text: '15+'
         };
       case '18':
         return {
-          bg: 'bg-rose-600',
-          border: 'border-rose-700',
-          shadow: 'shadow-rose-200',
+          bgColor: 'bg-[#d92323]',
           text: '18+'
         };
       default:
         return {
-          bg: 'bg-slate-600',
-          border: 'border-slate-700',
-          shadow: 'shadow-slate-200',
+          bgColor: 'bg-slate-600',
           text: rating
         };
     }
   };
 
-  const styles = getLargeStyles();
+  const { bgColor, text } = getStyles();
+
+  const sizeClasses = {
+    sm: {
+      container: 'w-14 h-18 border-2 rounded-lg text-xs',
+      top: 'h-10 text-sm font-black',
+      bottom: 'h-6 text-[7px] font-extrabold tracking-widest'
+    },
+    md: {
+      container: 'w-18 h-24 border-3 rounded-xl text-sm',
+      top: 'h-14 text-xl font-black',
+      bottom: 'h-8 text-[9px] font-black tracking-widest'
+    },
+    lg: {
+      container: 'w-24 h-32 border-4 rounded-2xl text-lg',
+      top: 'h-18 text-3xl font-black',
+      bottom: 'h-10 text-xs font-black tracking-widest'
+    }
+  };
+
+  const currentSize = sizeClasses[size];
 
   return (
-    <div className={`w-28 h-28 flex flex-col items-center justify-center rounded-2xl ${styles.bg} ${styles.border} border-4 text-white font-extrabold text-4xl shadow-xl ${styles.shadow}`}>
-      <div>{styles.text}</div>
-      <div className="text-[10px] uppercase tracking-wider font-medium mt-1">IGRS</div>
+    <div className={`flex flex-col border-black overflow-hidden shadow-sm select-none ${currentSize.container} ${className}`}>
+      {/* Bagian Atas: Angka Usia dengan Background Warna */}
+      <div className={`w-full flex items-center justify-center text-white leading-none ${bgColor} ${currentSize.top}`}>
+        {text}
+      </div>
+      
+      {/* Bagian Bawah: Tulisan IGRS warna hitam background putih */}
+      <div className={`w-full flex items-center justify-center bg-white text-black font-sans leading-none ${currentSize.bottom}`}>
+        IGRS
+      </div>
     </div>
   );
+};
+
+export const RatingBadgeLarge: React.FC<{ rating: '3' | '7' | '13' | '15' | '18' }> = ({ rating }) => {
+  return <IgrsOfficialBadge rating={rating} size="lg" />;
 };

@@ -1,171 +1,157 @@
 import React from 'react';
 import { Card } from '../components/ui/Card';
+import { IgrsOfficialBadge } from '../components/ui/Badge';
 import { BookOpen, Scale, Users } from 'lucide-react';
 
 export const RatingInfoPage: React.FC = () => {
   
-  // Data detail penjelasan klasifikasi usia
+  // Data detail penjelasan rating sesuai screenshot
   const ratingDetails = [
     {
-      rating: '3+',
-      name: 'Semua Umur',
-      colorBg: 'bg-emerald-600',
-      colorText: 'text-emerald-700',
-      colorLightBg: 'bg-emerald-50 border-emerald-200',
-      description: 'Klasifikasi ini ditujukan untuk gim yang cocok bagi anak-anak usia 3 tahun ke atas. Gim dalam kategori ini tidak mengandung unsur kekerasan, adegan seksual, konsumsi alkohol/narkotika, bahasa kasar, perjudian, maupun adegan menakutkan yang dapat merusak psikologi anak.',
-      tags: ['Interaksi Aman', 'Ramah Keluarga', 'Edukasi Sederhana', 'Aksi Kartun Ringan']
+      rating: '3',
+      title: '3 Tahun ke Atas',
+      description: 'Dirancang untuk anak-anak usia dini. Menampilkan elemen visual yang ceria, interaksi yang sangat sederhana, dan tidak ada elemen yang menakutkan.',
+      tags: ['Visual Sederhana', 'Non Kekerasan']
     },
     {
-      rating: '7+',
-      name: 'Bimbingan Orang Tua (7+)',
-      colorBg: 'bg-sky-600',
-      colorText: 'text-sky-700',
-      colorLightBg: 'bg-sky-50 border-sky-200',
-      description: 'Gim dalam kelompok usia ini mungkin berisi fantasi kekerasan animasi/kartun ringan tanpa darah, efek kejutan (ketakutan ringan), serta interaksi daring sederhana. Disarankan adanya bimbingan dari orang tua untuk memberikan arahan mengenai alur cerita dan aspek permainan.',
-      tags: ['Kekerasan Fantasi Ringan', 'Atmosfer Misteri', 'Interaksi Daring Diawasi']
+      rating: '7',
+      title: '7 Tahun ke Atas',
+      description: 'Mungkin mengandung sedikit kekerasan fantasi ringan yang tidak realistis. Karakter masih bersifat kartun dan tidak menampilkan darah atau luka.',
+      tags: ['Fantasi Ringan', 'Kartun']
     },
     {
-      rating: '13+',
-      name: 'Remaja (13+)',
-      colorBg: 'bg-amber-500',
-      colorText: 'text-amber-700',
-      colorLightBg: 'bg-amber-50 border-amber-200',
-      description: 'Ditujukan untuk remaja usia 13 tahun ke atas. Konten dapat mencakup kekerasan fantasi atau pertempuran animasi yang lebih sering, penampilan karakter yang sedikit provokatif, bahasa gaul yang agak kasar, serta fitur pembelian dalam gim atau transaksi mikro (microtransaction).',
-      tags: ['Kekerasan Animasi', 'Transaksi Mikro', 'Bahasa Gaul', 'Penampilan Karakter']
+      rating: '13',
+      title: '13 Tahun ke Atas',
+      description: 'Konten ditujukan untuk remaja. Mengandung kekerasan yang lebih eksplisit namun tetap terkontrol, penggunaan bahasa yang sedikit lebih berani.',
+      tags: ['Kekerasan Menengah', 'Bahasa Remaja']
     },
     {
-      rating: '15+',
-      name: 'Remaja (15+)',
-      colorBg: 'bg-orange-500',
-      colorText: 'text-orange-700',
-      colorLightBg: 'bg-orange-50 border-orange-200',
-      description: 'Kategori ini dirancang untuk remaja berumur 15 tahun ke atas. Gim dapat berisi tembak-menembak intens, simulasi militer dengan efek visual darah (namun tanpa mutilasi sadis), konsumsi alkohol/rokok oleh karakter fiktif, serta fitur interaksi sosial daring yang dinamis.',
-      tags: ['Kekerasan Militer', 'Visualisasi Darah', 'Zat Adiktif Ringan', 'Interaksi Daring Bebas']
+      rating: '15',
+      title: '15 Tahun ke Atas',
+      description: 'Memerlukan kedewasaan emosional. Kekerasan lebih intens, tema cerita yang kompleks, dan mungkin menyentuh isu-isu sosial yang lebih dalam.',
+      tags: ['Tema Kompleks', 'Kekerasan Intens']
     },
     {
-      rating: '18+',
-      name: 'Dewasa (18+)',
-      colorBg: 'bg-rose-600',
-      colorText: 'text-rose-700',
-      colorLightBg: 'bg-rose-50 border-rose-200',
-      description: 'Hanya untuk dewasa berusia 18 tahun ke atas. Gim dalam kategori ini berisi kekerasan sadis dengan efek darah nyata dan pemotongan tubuh (mutilasi), adegan seksual eksplisit, ketelanjangan, perjudian aktif, penggunaan narkotika, serta bahasa kotor/makian tingkat tinggi secara konstan.',
-      tags: ['Kekerasan Sadis & Darah', 'Seksualitas & Ketelanjangan', 'Perjudian Aktif', 'Bahasa Kasar']
+      rating: '18',
+      title: '18 Tahun ke Atas',
+      description: 'Konten khusus dewasa. Mengandung kekerasan tingkat tinggi, bahasa kasar yang eksplisit, perjudian simulasi, atau elemen konten dewasa lainnya.',
+      tags: ['Dewasa', 'Kekerasan Brutal']
     }
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white">
       
       {/* 1. Hero Section (Navy) */}
       <section className="bg-navy-gradient text-white py-16 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:36px_36px] pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center relative z-10 flex flex-col gap-4">
-          <span className="bg-white/10 px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase backdrop-blur-sm text-accent-yellow self-center">
-            Pedoman Resmi
-          </span>
-          <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
             Informasi Klasifikasi Usia
           </h1>
           <p className="text-slate-300 text-xs md:text-sm max-w-xl mx-auto leading-relaxed">
-            Pedoman lengkap mengenai pembagian kategori umur pemain game berdasarkan deskriptor konten yang diatur oleh Pemerintah Indonesia.
+            Panduan resmi Indonesia Game Rating System yang menghadirkan transparansi konten demi melindungi pemain dari materi yang tidak sesuai dengan tahap perkembangan usia.
           </p>
         </div>
       </section>
 
-      {/* 2. Penjelasan Rating (5 Large Vertical Cards) */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col gap-8">
-        <h2 className="text-2xl font-extrabold text-slate-800 tracking-tight text-center mb-6">
-          Kategori Kelompok Usia IGRS
+      {/* 2. Penjelasan Rating Usia IGRS (Grid Centered) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h2 className="text-xl font-extrabold text-primary text-center mb-16 uppercase tracking-wider">
+          Penjelasan Rating Usia IGRS
         </h2>
 
-        {ratingDetails.map((item, idx) => (
-          <Card key={idx} className="flex flex-col md:flex-row gap-6 p-8 items-start md:items-center hover:shadow-md transition-all duration-300 bg-white">
-            
-            {/* Box Angka Rating Kiri */}
-            <div className={`w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-2xl ${item.colorBg} text-white font-black text-3xl md:text-4xl flex flex-col items-center justify-center shadow-lg`}>
-              {item.rating}
-              <span className="text-[8px] font-bold tracking-wider uppercase mt-1">IGRS</span>
-            </div>
-
-            {/* Konten Kanan */}
-            <div className="flex-1 flex flex-col gap-3">
-              <div className="flex flex-wrap items-center gap-3">
-                <h3 className="text-lg font-extrabold text-slate-800 leading-none">
-                  {item.name}
-                </h3>
-                <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${item.colorLightBg} uppercase tracking-wider`}>
-                  Kategori {item.rating}
-                </span>
-              </div>
-              
-              <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
-                {item.description}
-              </p>
-
-              {/* Tag Kecil di Paling Bawah */}
-              <div className="flex flex-wrap gap-2 pt-2">
-                {item.tags.map((tag, tagIdx) => (
-                  <span
-                    key={tagIdx}
-                    className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 text-[10px] font-semibold rounded-md transition-colors"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-          </Card>
-        ))}
-      </section>
-
-      {/* 3. Panduan Penentuan (3 Cards) */}
-      <section className="bg-slate-100 py-20 px-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Flex layout wrap untuk menampung baris pertama (3 kartu) dan baris kedua (2 kartu yang terpusat) */}
+        <div className="flex flex-col gap-8 items-center">
           
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">
-              Panduan Penentuan Klasifikasi Usia
-            </h2>
-            <p className="text-slate-500 text-sm mt-3">
-              Bagaimana proses verifikasi dan penentuan rating gim dilakukan secara formal dan legal di IGRS.
-            </p>
+          {/* Baris Pertama: 3+, 7+, 13+ */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+            {ratingDetails.slice(0, 3).map((item, idx) => (
+              <Card key={idx} className="flex flex-col items-center text-center p-8 bg-white border border-slate-100 hover:shadow-md transition-all duration-300">
+                <IgrsOfficialBadge rating={item.rating} size="md" className="mb-6" />
+                <h3 className="text-base font-bold text-slate-800 mb-3">{item.title}</h3>
+                <p className="text-xs text-slate-400 leading-relaxed mb-6 flex-1 max-w-[260px]">{item.description}</p>
+                <div className="flex gap-2">
+                  {item.tags.map((tag, tIdx) => (
+                    <span key={tIdx} className="px-2.5 py-1 border border-slate-100 rounded-full text-[9px] font-bold text-slate-400 uppercase tracking-wide">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </Card>
+            ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Baris Kedua: 15+, 18+ (Centered) */}
+          <div className="flex flex-col md:flex-row gap-8 justify-center w-full md:max-w-[760px]">
+            {ratingDetails.slice(3).map((item, idx) => (
+              <Card key={idx} className="flex flex-col items-center text-center p-8 bg-white border border-slate-100 hover:shadow-md transition-all duration-300 flex-1 md:max-w-[350px]">
+                <IgrsOfficialBadge rating={item.rating} size="md" className="mb-6" />
+                <h3 className="text-base font-bold text-slate-800 mb-3">{item.title}</h3>
+                <p className="text-xs text-slate-400 leading-relaxed mb-6 flex-1 max-w-[260px]">{item.description}</p>
+                <div className="flex gap-2">
+                  {item.tags.map((tag, tIdx) => (
+                    <span key={tIdx} className="px-2.5 py-1 border border-slate-100 rounded-full text-[9px] font-bold text-slate-400 uppercase tracking-wide">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </Card>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. Panduan Penentuan Klasifikasi */}
+      <section className="bg-slate-50 py-20 px-4 border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <h2 className="text-xl font-extrabold text-primary text-center mb-16 uppercase tracking-wider">
+            Panduan Penentuan Klasifikasi
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
             
-            {/* Card 1: Analisis Konten Mendalam */}
-            <Card className="flex flex-col gap-4 p-8 bg-white hover:shadow-md transform hover:-translate-y-1 transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                <BookOpen size={24} />
-              </div>
-              <h3 className="text-base font-bold text-slate-800">Analisis Konten Mendalam</h3>
-              <p className="text-slate-500 text-xs leading-relaxed">
-                Melakukan evaluasi menyeluruh terhadap aspek visual, cerita, interaksi sosial, mekanisme bermain, serta sistem transaksi internal gim secara objektif.
-              </p>
-            </Card>
+            {/* Kiri: Analisis Konten Mendalam (Full Height) */}
+            <div className="md:col-span-6 h-full flex">
+              <Card className="flex flex-col gap-4 p-8 bg-white hover:shadow-md transition-all duration-300 w-full justify-center">
+                <div className="w-12 h-12 rounded-xl bg-primary/5 text-primary flex items-center justify-center mb-2">
+                  <BookOpen size={24} />
+                </div>
+                <h3 className="text-base font-bold text-slate-800">Analisis Konten Mendalam</h3>
+                <p className="text-slate-500 text-xs leading-relaxed max-w-md">
+                  Setiap gim yang didaftarkan wajib melewati proses pemeriksaan teknis secara menyeluruh dan mendalam, yang mencakup verifikasi detail pada seluruh komponen aset visual, peninjauan ketat terhadap aspek audio serta skrip dialog, hingga pengujian komprehensif pada fungsi mekanisme gameplay dan interaksi guna mendeteksi, mengukur, serta mengevaluasi setiap potensi unsur sensitif secara sangat presisi demi menghasilkan klasifikasi rating yang akurat sesuai standar keselamatan digital.
+                </p>
+              </Card>
+            </div>
 
-            {/* Card 2: Aspek Hukum */}
-            <Card className="flex flex-col gap-4 p-8 bg-white hover:shadow-md transform hover:-translate-y-1 transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-accent-green/10 text-accent-green flex items-center justify-center">
-                <Scale size={24} />
-              </div>
-              <h3 className="text-base font-bold text-slate-800">Kepatuhan Hukum & Regulasi</h3>
-              <p className="text-slate-500 text-xs leading-relaxed">
-                Penilaian didasarkan pada payung hukum kuat Peraturan Menteri Kominfo Nomor 2 Tahun 2024 untuk menjamin kepastian regulasi industri kreatif.
-              </p>
-            </Card>
+            {/* Kanan: Aspek Hukum dan Dewan Penilai (2 stacked cards) */}
+            <div className="md:col-span-6 flex flex-col gap-8">
+              
+              {/* Aspek Hukum */}
+              <Card className="flex flex-col gap-4 p-8 bg-white hover:shadow-md transition-all duration-300 flex-1 justify-center">
+                <div className="w-12 h-12 rounded-xl bg-[#2A9D8F]/5 text-[#2A9D8F] flex items-center justify-center mb-2">
+                  <Scale size={24} />
+                </div>
+                <h3 className="text-base font-bold text-slate-800">Aspek Hukum</h3>
+                <p className="text-slate-500 text-xs leading-relaxed">
+                  Proses klasifikasi gim diselenggarakan secara resmi berdasarkan payung hukum Peraturan Menteri Kominfo Nomor 11 Tahun 2016 tentang Klasifikasi Permainan Elektronik untuk menjamin kepatuhan regulasi.
+                </p>
+              </Card>
 
-            {/* Card 3: Dewan Penilai */}
-            <Card className="flex flex-col gap-4 p-8 bg-white hover:shadow-md transform hover:-translate-y-1 transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-accent-blue/10 text-accent-blue flex items-center justify-center">
-                <Users size={24} />
-              </div>
-              <h3 className="text-base font-bold text-slate-800">Pengawasan Dewan Penilai</h3>
-              <p className="text-slate-500 text-xs leading-relaxed">
-                Melibatkan tim ahli independen, perwakilan akademisi, asosiasi gim, kementerian terkait, serta masukan berkala dari masyarakat umum.
-              </p>
-            </Card>
+              {/* Dewan Penilai */}
+              <Card className="flex flex-col gap-4 p-8 bg-white hover:shadow-md transition-all duration-300 flex-1 justify-center">
+                <div className="w-12 h-12 rounded-xl bg-accent-blue/5 text-accent-blue flex items-center justify-center mb-2">
+                  <Users size={24} />
+                </div>
+                <h3 className="text-base font-bold text-slate-800">Dewan Penilai</h3>
+                <p className="text-slate-500 text-xs leading-relaxed">
+                  Penilaian dilakukan dengan melibatkan kolaborasi aktif antara psikolog anak, ahli teknologi, serta perwakilan masyarakat guna memastikan hasil klasifikasi yang objektif, terpercaya, dan akurat.
+                </p>
+              </Card>
+
+            </div>
 
           </div>
 

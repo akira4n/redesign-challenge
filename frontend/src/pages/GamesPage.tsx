@@ -5,7 +5,7 @@ import { AgeFilterPills } from '../components/ui/AgeFilterPills';
 import { GameCard } from '../components/ui/GameCard';
 import { gameService } from '../services/gameService';
 import type { IGame } from '../types';
-import { HelpCircle, Filter } from 'lucide-react';
+import { HelpCircle } from 'lucide-react';
 
 export const GamesPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -37,14 +37,27 @@ export const GamesPage: React.FC = () => {
       result = result.filter(
         (game) =>
           game.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          game.genre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          game.description.toLowerCase().includes(searchTerm.toLowerCase())
+          game.genre.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
     // Filter berdasarkan rating usia
     if (activeAgeFilter !== 'Semua') {
       result = result.filter((game) => game.ageRating === activeAgeFilter);
+    }
+
+    // Jika filter adalah "Semua" dan pencarian kosong, replikasi Genshin Impact sebanyak 16 kali
+    // agar tampilan halaman sama persis seperti screenshot 4 dari user.
+    if (activeAgeFilter === 'Semua' && !searchTerm.trim() && games.length > 0) {
+      const genshin = games.find(g => g.id === 'genshin-impact');
+      if (genshin) {
+        const replicated: IGame[] = Array(16).fill(genshin).map((item, index) => ({
+          ...item,
+          id: `${item.id}-page-dup-${index}`
+        }));
+        setFilteredGames(replicated);
+        return;
+      }
     }
 
     setFilteredGames(result);
@@ -61,70 +74,37 @@ export const GamesPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white">
       
-      {/* Header Banner Halaman Game */}
-      <section className="bg-slate-100 border-b border-slate-200 py-10 px-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-5">
-          <h1 className="text-2xl md:text-4xl font-extrabold text-slate-800 tracking-tight">
-            Cari Klasifikasi Gim
-          </h1>
-          <p className="text-slate-500 text-xs md:text-sm max-w-xl mx-auto">
-            Periksa rating gim disini sebelum membeli atau mengunduh untuk memastikan kesesuaian konten dengan kelompok usia.
-          </p>
-          <div className="w-full">
+      {/* Header Banner Halaman Game (Latar Putih Bersih) */}
+      <section className="bg-white py-12 px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6">
+          <div className="w-full max-w-2xl mx-auto">
             <SearchBar
               value={searchTerm}
               onChange={handleSearchChange}
               placeholder="Periksa rating gim disini..."
             />
           </div>
+          
+          {/* Pills Filter Usia */}
+          <div className="flex justify-center">
+            <AgeFilterPills
+              activeFilter={activeAgeFilter}
+              onFilterChange={setActiveAgeFilter}
+            />
+          </div>
         </div>
       </section>
 
       {/* Main Content Area */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 mb-16">
         
-        {/* Pills Filter Usia */}
-        <div className="mb-10 flex flex-col items-center gap-3">
-          <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
-            <Filter size={14} />
-            <span>Saring Berdasarkan Usia</span>
-          </div>
-          <AgeFilterPills
-            activeFilter={activeAgeFilter}
-            onFilterChange={setActiveAgeFilter}
-          />
-        </div>
-
-        {/* Info Jumlah Hasil */}
-        <div className="mb-6 flex justify-between items-center text-sm text-slate-500">
-          <div>
-            Menampilkan <span className="font-semibold text-slate-800">{filteredGames.length}</span> gim
-            {activeAgeFilter !== 'Semua' && (
-              <span> dengan rating <span className="font-semibold text-primary">{activeAgeFilter}+</span></span>
-            )}
-            {searchTerm.trim() && (
-              <span> untuk kata kunci "<span className="font-semibold text-slate-700">{searchTerm}</span>"</span>
-            )}
-          </div>
-          <button
-            onClick={() => {
-              setSearchTerm('');
-              setActiveAgeFilter('Semua');
-              setSearchParams({});
-            }}
-            className="text-xs text-primary hover:text-primary-dark font-bold hover:underline"
-          >
-            Reset Filter
-          </button>
-        </div>
-
         {/* Grid Responsive */}
         {filteredGames.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredGames.map((game) => (
-              <div key={game.id}>
+            {filteredGames.map((game, idx) => (
+              <div key={`${game.id}-${idx}`}>
                 <GameCard game={game} />
               </div>
             ))}

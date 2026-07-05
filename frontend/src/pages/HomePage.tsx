@@ -26,17 +26,20 @@ export const HomePage: React.FC = () => {
 
   useEffect(() => {
     gameService.getGames().then((data) => {
-      // Cari data Genshin Impact untuk direplikasi sebanyak 7 kali agar persis seperti di screenshot
+      // COMMENTED OUT: Kode mock replikasi Genshin Impact
+      /*
       const genshin = data.find((g) => g.id === 'genshin-impact');
       if (genshin) {
         const replicated: IGame[] = Array(7).fill(genshin).map((item, index) => ({
           ...item,
-          id: `${item.id}-dup-${index}` // Beri id unik agar tidak terjadi key collision
+          id: `${item.id}-dup-${index}`
         }));
         setFeaturedGames(replicated);
       } else {
         setFeaturedGames(data.slice(0, 7));
       }
+      */
+      setFeaturedGames(data.slice(0, 7));
     });
 
     gameService.getBlogs().then((data) => setBlogs(data.slice(0, 3)));

@@ -1,0 +1,56 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Publisher {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  games     Game[]
+  createdAt DateTime @default(now())
+}
+
+model Game {
+  id                 String    @id
+  title              String
+  genre              String
+  ageRating          String    // e.g. "3", "7", "13", "15", "18"
+  image              String
+  description        String
+  platforms          String[]
+  contentDescriptors String[]
+  screenshots        String[]
+  ratingAnalysis     Json      // Array of { title: string, description: string }
+  publisherId        String
+  publisher          Publisher @relation(fields: [publisherId], references: [id])
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}
+
+model Blog {
+  id        String   @id
+  title     String
+  date      String   // e.g. "2 Februari 2026"
+  author    String
+  badge     String
+  image     String
+  content   String
+  points    String[]
+  signature String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  category  String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}

@@ -46,8 +46,9 @@ export const GamesPage: React.FC = () => {
       result = result.filter((game) => game.ageRating === activeAgeFilter);
     }
 
-    // Jika filter adalah "Semua" dan pencarian kosong, replikasi Genshin Impact sebanyak 16 kali
-    // agar tampilan halaman sama persis seperti screenshot 4 dari user.
+    // COMMENTED OUT: Kode mock replikasi Genshin Impact
+    // Jika ingin menampilkan data real dari database, biarkan bagian ini dinonaktifkan.
+    /*
     if (activeAgeFilter === 'Semua' && !searchTerm.trim() && games.length > 0) {
       const genshin = games.find(g => g.id === 'genshin-impact');
       if (genshin) {
@@ -59,6 +60,7 @@ export const GamesPage: React.FC = () => {
         return;
       }
     }
+    */
 
     setFilteredGames(result);
   }, [games, searchTerm, activeAgeFilter]);

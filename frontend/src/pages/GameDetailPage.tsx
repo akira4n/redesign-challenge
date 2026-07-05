@@ -161,7 +161,7 @@ export const GameDetailPage: React.FC = () => {
             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
               Deskriptor Konten
             </h3>
-            <div className="flex gap-4 items-center justify-center flex-1 my-2">
+            <div className="flex flex-wrap gap-3 items-center justify-center flex-1 my-2">
               {game.contentDescriptors.map((desc, idx) => (
                 <div key={idx} className="flex flex-col items-center gap-1.5 border border-slate-100 p-2.5 rounded-xl bg-slate-50 w-24">
                   {getDescriptorIcon(desc)}

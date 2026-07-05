@@ -70,7 +70,11 @@ Berikut adalah daftar endpoint API yang tersedia pada server backend ini:
     ```bash
     npm install
     ```
-2.  **Jalankan Database PostgreSQL**:
+2.  **Konfigurasi Environment**:
+    Buat file `.env` dengan menyalin file contoh `.env.example`:
+    *   Windows: `copy .env.example .env`
+    *   Linux/macOS: `cp .env.example .env`
+3.  **Jalankan Database PostgreSQL**:
     Pastikan aplikasi Docker Anda sudah menyala, lalu jalankan:
     ```bash
     docker compose up -d

@@ -28,14 +28,23 @@ Repositori ini berisi proyek redesign challenge website **Indonesia Game Rating 
 
 Ikuti langkah-langkah di bawah ini secara berurutan untuk menyalakan database, backend, dan frontend.
 
-### Langkah 1: Persiapan Database (Docker)
+### Langkah 1: Konfigurasi Environment & Database (Docker)
 1.  Pastikan **Docker** Anda sudah dalam keadaan aktif.
 2.  Buka terminal/command prompt di root folder proyek ini.
 3.  Masuk ke direktori backend:
     ```bash
     cd backend
     ```
-4.  Jalankan PostgreSQL container di background:
+4.  Buat file `.env` dengan menyalin `.env.example`:
+    *   Di Windows:
+        ```cmd
+        copy .env.example .env
+        ```
+    *   Di Linux/macOS:
+        ```bash
+        cp .env.example .env
+        ```
+5.  Jalankan PostgreSQL container di background:
     ```bash
     docker compose up -d
     ```

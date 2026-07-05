@@ -88,20 +88,13 @@ export const BlogDetailPage: React.FC = () => {
       {/* Konten Utama */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
         
-        {/* Gambar WIP "WORK IN PROGRESS" Papan Gantung */}
-        <div className="bg-gradient-to-tr from-amber-100 to-rose-100 rounded-3xl p-16 flex items-center justify-center shadow-inner border border-slate-200/50 mb-10 aspect-video md:aspect-[21/9]">
-          
-          <div className="relative flex flex-col items-center justify-center bg-amber-400 border-4 border-amber-600 rounded-2xl p-6 shadow-2xl transform -rotate-2 w-full max-w-[280px] hover:rotate-0 transition-transform duration-300">
-            {/* Tali Papan */}
-            <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-20 h-10 border-t-2 border-x-2 border-slate-600 rounded-t-full pointer-events-none"></div>
-            {/* Paku Kiri & Kanan */}
-            <div className="w-2.5 h-2.5 bg-slate-700 rounded-full absolute -top-1.5 left-3"></div>
-            <div className="w-2.5 h-2.5 bg-slate-700 rounded-full absolute -top-1.5 right-3"></div>
-            
-            <span className="text-xs font-black uppercase tracking-widest text-amber-950 mb-1">IGRS</span>
-            <span className="text-lg md:text-xl font-black text-amber-950 text-center leading-none tracking-tight">WORK IN PROGRESS</span>
-          </div>
-
+        {/* Gambar Blog Utama */}
+        <div className="rounded-3xl overflow-hidden shadow-md border border-slate-200/50 mb-10 bg-slate-100">
+          <img
+            src={blog.image}
+            alt={blog.title}
+            className="w-full h-auto block"
+          />
         </div>
 
         {/* Teks Paragraf dan Poin-poin */}

@@ -12,21 +12,13 @@ export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
   return (
     <Card className="flex flex-col h-full overflow-hidden group">
       {/* Container Image */}
-      <div className="relative w-full h-44 -mx-6 -mt-6 mb-4 overflow-hidden bg-gradient-to-tr from-amber-100 to-rose-100 flex items-center justify-center">
-        {/* Desain Tanda "WORK IN PROGRESS" Gantung */}
-        <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-300 z-10" />
-        
-        {/* Tanda Papan Kuning WIP */}
-        <div className="relative flex flex-col items-center justify-center bg-amber-400 border-[3px] border-amber-600 rounded-xl p-3 shadow-lg transform -rotate-3 group-hover:rotate-0 transition-transform duration-300 w-3/4 max-w-[200px] z-20">
-          {/* Tali Gantung */}
-          <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-6 border-t-2 border-x-2 border-slate-600 rounded-t-full pointer-events-none"></div>
-          {/* Bulatan Gantungan */}
-          <div className="w-1.5 h-1.5 bg-slate-700 rounded-full absolute -top-1 left-2"></div>
-          <div className="w-1.5 h-1.5 bg-slate-700 rounded-full absolute -top-1 right-2"></div>
-          
-          <span className="text-[10px] font-black uppercase tracking-widest text-amber-950 mb-0.5">IGRS</span>
-          <span className="text-sm font-black text-amber-950 text-center leading-none tracking-tight">WORK IN PROGRESS</span>
-        </div>
+      <div className="relative h-44 -mx-6 -mt-6 mb-4 overflow-hidden bg-slate-100">
+        <img
+          src={blog.image}
+          alt={blog.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-300" />
       </div>
 
       {/* Konten */}

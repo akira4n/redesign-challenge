@@ -90,18 +90,18 @@ export const IgrsOfficialBadge: React.FC<IgrsOfficialBadgeProps> = ({ rating, si
 
   const sizeClasses = {
     sm: {
-      container: 'w-14 h-18 border-2 rounded-lg text-xs',
+      container: 'w-12 h-16 border-2 border-black rounded-lg text-xs',
       top: 'h-10 text-sm font-black',
       bottom: 'h-6 text-[7px] font-extrabold tracking-widest'
     },
     md: {
-      container: 'w-18 h-24 border-3 rounded-xl text-sm',
-      top: 'h-14 text-xl font-black',
-      bottom: 'h-8 text-[9px] font-black tracking-widest'
+      container: 'w-[72px] h-[96px] border-[3px] border-black rounded-xl text-sm',
+      top: 'h-[62px] text-xl font-black',
+      bottom: 'h-[28px] text-[9px] font-black tracking-widest'
     },
     lg: {
-      container: 'w-24 h-32 border-4 rounded-2xl text-lg',
-      top: 'h-18 text-3xl font-black',
+      container: 'w-24 h-32 border-4 border-black rounded-2xl text-lg',
+      top: 'h-[84px] text-3xl font-black',
       bottom: 'h-10 text-xs font-black tracking-widest'
     }
   };

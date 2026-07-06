@@ -127,7 +127,7 @@ export const HomePage: React.FC = () => {
                 <img
                   src={heroGameChars}
                   alt="Karakter Game Edukasi IGRS"
-                  className="w-full h-full object-contain drop-shadow-lg"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>
